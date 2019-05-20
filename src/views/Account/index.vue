@@ -4,3 +4,21 @@
     <h2>Porque está logueado</h2>
   </div>
 </template>
+
+<script>
+import { mapState } from 'vuex'
+
+export default {
+  name: 'account',
+  date() {
+    return{
+      profile: {}
+    }
+  },
+  methods: {
+    
+  }
+
+}
+</script>
+

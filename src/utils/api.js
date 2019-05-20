@@ -3,24 +3,18 @@
 //     'user/me': { 'GET': { name: 'doggo', title: 'sir' } }
 //   }
   
-// const apiCall = ({url, method, ...args}) => new Promise((resolve, reject) => {
+// const apiCall = () => new Promise((resolve, reject) => {
 //   -    setTimeout(() => {
-  const apiCall = async (url, user, method) => {
-    console.log('la url es : ' +url)
-    // const apiUrl = url
-    // const postData = user.data
-    // const methodData = method
-    // console.log(apiUrl)
-    // const postData = data.user
-    // console.log(postData)
-    // console.log(postData)
+  // const apiCall = async (url, method, user) => { // ok
+  const apiCall = async ( {url, method, ...args} ) => {
     const settings = {
-      method: method,
+      method,
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('user-token')
       },
-      body: JSON.stringify(user) // context.state.newObject // JSON.stringify(context.state.catalog)
+      body: JSON.stringify(args.data) // context.state.newObject // JSON.stringify(context.state.catalog)
     }
     const data = await fetch(url, settings)
       .then(response => response.json())
