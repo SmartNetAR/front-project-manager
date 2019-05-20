@@ -13,15 +13,15 @@ const getters = {
 const actions = {
   [USER_REQUEST]: ({commit, dispatch}) => {
     commit(USER_REQUEST)
-    apiCall({url: 'user/me'})
-      .then(resp => {
-        commit(USER_SUCCESS, resp)
-      })
-      .catch(resp => {
-        commit(USER_ERROR)
-        // if resp is unauthorized, logout, to
-        dispatch(AUTH_LOGOUT)
-      })
+    // apiCall({url: 'user/me'})
+    //   .then(resp => {
+    //     commit(USER_SUCCESS, resp)
+    //   })
+    //   .catch(resp => {
+    //     commit(USER_ERROR)
+    //     // if resp is unauthorized, logout, to
+    //     dispatch(AUTH_LOGOUT)
+    //   })
   },
 }
 
