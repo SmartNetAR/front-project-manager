@@ -29,8 +29,8 @@
     name: 'login',
     data () {
       return {
-        email: 'leonardo@smartnet.com.ar',
-        password: '123456',
+        email: '',
+        password: '',
       }
     },
     methods: {

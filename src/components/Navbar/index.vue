@@ -22,32 +22,23 @@
               <span class="sr-only">(current)</span>
             </router-link>
           </li>
-          <li class="nav-item active">
-            <router-link :to="{ name: 'account'}" exact class="nav-link">
-              Account
-              <span class="sr-only">(current)</span>
-            </router-link>
-          </li>
-          <li class="nav-item">
-            <router-link :to="{ name: 'login'}" exact class="nav-link">
-              Login
-              <span class="sr-only">(current)</span>
-            </router-link>
-          </li>
           <li class="nav-item">
             <router-link :to="{ name: 'about'}" exact class="nav-link">
               About
               <span class="sr-only">(current)</span>
             </router-link>
           </li>
-          <li class="nav-item">
-            <router-link :to="{ name: 'login'}" exact class="nav-link">
+          <li v-if="isAuthenticated" class="nav-item" @click="logout">
+            <router-link :to="{ name: 'home' }" exact class="nav-link">
               Logout
               <span class="sr-only">(current)</span>
             </router-link>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+          <li v-if="!isAuthenticated && !authLoading" class="nav-item">
+            <router-link :to="{ name: 'login'}" exact class="nav-link">
+              Login
+              <span class="sr-only">(current)</span>
+            </router-link>
           </li>
           <li class="nav-item dropdown">
             <a
@@ -66,8 +57,9 @@
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          <li v-if="isProfileLoaded" class="nav-item">
+            <router-link :to="{ name: 'account' }" exact class="nav-link">{{ getProfile.nick }}</router-link>
+            <span class="sr-only">(current)</span>
           </li>
         </ul>
       </div>
@@ -76,7 +68,23 @@
 </template>
 
 <script>
+import { mapGetters, mapState, mapActions } from 'vuex'
+
 export default {
-  name: 'Navbar'
+  name: 'Navbar',
+  methods: {
+    ...mapActions( ['AUTH_LOGOUT' ] ),
+    logout: function () {
+      this.AUTH_LOGOUT()
+    }
+  },
+  computed: {
+    ...mapGetters(['getProfile', 'isAuthenticated', 'isProfileLoaded']),
+    ...mapState({
+      authLoading: state => state.auth.status === 'loading',
+      // nick: state => '${state.user.profile.nick}',
+    })
+  },
+
 }
 </script>

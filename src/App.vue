@@ -9,17 +9,26 @@
   </div>
 </template>
 <script>
+// import { mapGetters } from 'vuex'
+// import { USER_REQUEST } from 'actions/user'
 import { mapGetters, mapActions } from 'vuex'
 
 import Navbar from './components/Navbar'
-// import { USER_REQUEST } from 'actions/user'
 
 export default {
   components: {
     Navbar
   },
   methods: {
-    ...mapActions([ 'USER_REQUEST' ]),
+    ...mapActions([ 'USER_REQUEST' ])
+  },
+  // created: function () {
+  //   if (this.$store.getters.isAuthenticated) {
+  //     this.$store.dispatch(USER_REQUEST)
+  //   }
+  // }
+  computed: {
+    ...mapGetters({ isAuthenticated: 'isAuthenticated' })
   },
   created: function () {
     if (this.isAuthenticated) {

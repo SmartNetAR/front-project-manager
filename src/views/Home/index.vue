@@ -1,7 +1,6 @@
 <template>
   <div class="home">
     <!-- <Navbar></Navbar> -->
-    <button @click="Exit">Logout</button>
     <img alt="Vue logo" src="../../assets/logo.png">
   </div>
 </template>

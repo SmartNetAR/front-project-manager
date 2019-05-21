@@ -7,17 +7,18 @@ const state = { status: '', profile: {} }
 
 const getters = {
   getProfile: state => state.profile,
-  isProfileLoaded: state => !!state.profile.name,
+  isProfileLoaded: state => !!state.profile.email,
 }
 
 const actions = {
   [USER_REQUEST]: ({commit, dispatch}) => {
     commit(USER_REQUEST)
-    apiCall({url: 'http://localhost:8000/api/profile'})
+    apiCall({url: 'profile'})
       .then(resp => {
         commit(USER_SUCCESS, resp.user)
       })
       .catch(resp => {
+        console.log(resp)
         commit(USER_ERROR)
         // if resp is unauthorized, logout, to
         dispatch(AUTH_LOGOUT)
