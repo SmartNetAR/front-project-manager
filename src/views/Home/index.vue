@@ -1,7 +1,19 @@
 <template>
   <div class="home">
-    <!-- <Navbar></Navbar> -->
     <img alt="Vue logo" src="../../assets/logo.png">
+    <ul class="list-group">
+      <li>
+        <router-link :to="{ name: 'team'}" class="list-group-item list-group-item-action">My Teams</router-link>
+      </li>
+      <li>
+        <router-link :to="{ name: 'team'}" class="list-group-item list-group-item-action">My Projects</router-link>
+      </li>
+      <li>
+        <router-link :to="{ name: 'team'}" class="list-group-item list-group-item-action">My Roles</router-link>
+      </li>
+    </ul>
+
+    <!-- :to="{ name: 'account' }" exact class="nav-link" -->
   </div>
 </template>
 
