@@ -38,8 +38,12 @@
 
       login: function () {
         const { email, password } = this
-        this.AUTH_REQUEST( { email, password }).then(() => {
+        this.AUTH_REQUEST( { email, password })
+        .then(() => {
           this.$router.push('/')
+        }).catch( (error) => {
+          console.error(error)
+          alert( error.message )
         })
       }
     },

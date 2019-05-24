@@ -11,19 +11,18 @@ const getters = {
 }
 
 const actions = {
-  [AUTH_REQUEST]: ({commit, dispatch}, user) => {
+  [AUTH_REQUEST]: async ({commit, dispatch}, user) => {
       commit(AUTH_REQUEST)
-      apiCall({ url: 'login', method: 'POST', data: user })
-      .then(resp => {
-          localStorage.setItem('user-token', resp.token)
-          commit(AUTH_SUCCESS, resp)
-          dispatch(USER_REQUEST)
-      })
-      .catch(err => {
-        alert(err.message)
-        commit(AUTH_ERROR, err)
+      try {
+        const response = await apiCall({ url: 'login', method: 'POST', data: user })
+        localStorage.setItem('user-token', response.token)
+        commit(AUTH_SUCCESS, response)
+        dispatch(USER_REQUEST)
+      } catch (error) {
+        commit(AUTH_ERROR, error)
         localStorage.removeItem('user-token')
-      })
+        throw Error(error);
+      }
   },
   [AUTH_LOGOUT]: ({commit}) => {
       commit(AUTH_LOGOUT)

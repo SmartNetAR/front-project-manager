@@ -4,21 +4,19 @@ import apiCall from '@/utils/api'
 
 const state = { teams: [], status: '' }
 
-const getters = { 
-  getTeams: function(state) { return state.teams }
+const getters = {
+  getTeams: state =>  state.teams 
 }
 
 const actions = {
-  [TEAM_REQUEST]: ( {commit} ) => {
+  [TEAM_REQUEST]: async ( {commit} ) => {
     commit(TEAM_REQUEST)
-    apiCall({url: 'team'})
-    .then( resp => {
-      commit( TEAM_SUCCESS, resp.teams )
-    })
-    .catch( resp => {
-      console.log(resp)
+    try {
+      const response = await apiCall({url: 'team'})
+      commit( TEAM_SUCCESS, response.teams )      
+    } catch (error) {
       commit ( TEAM_ERROR )
-    })
+    }
   }
 }
 

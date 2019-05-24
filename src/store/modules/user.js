@@ -11,18 +11,15 @@ const getters = {
 }
 
 const actions = {
-  [USER_REQUEST]: ({commit, dispatch}) => {
+  [USER_REQUEST]: async ({commit, dispatch}) => {
     commit(USER_REQUEST)
-    apiCall({url: 'profile'})
-      .then(resp => {
-        commit(USER_SUCCESS, resp.user)
-      })
-      .catch(resp => {
-        console.log(resp)
-        commit(USER_ERROR)
-        // if resp is unauthorized, logout, to
-        dispatch(AUTH_LOGOUT)
-      })
+    try {
+      const response = await apiCall({url: 'profile'})
+      commit(USER_SUCCESS, response.user)
+    } catch (error) {
+      commit(USER_ERROR)
+      dispatch(AUTH_LOGOUT)   
+    }
   },
 }
 
