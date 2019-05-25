@@ -1,31 +1,14 @@
 <template>
   <div>
-    <h1>My teams</h1>
-    <div class="col">
-      <div class="row">
-        <team-create></team-create>
-        <team-join></team-join>
-      </div>
-    </div>
-    <team-list></team-list>
-    <!-- <ul>
+    <ul>
       <li v-for="team in getTeams" :key="team.id">{{ team.name }}</li>
-    </ul> -->
+    </ul>
   </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
-import TeamList from '../../components/Team/TeamList';
-import TeamCreate from '../../components/Team/TeamCreate';
-import TeamJoin from '../../components/Team/TeamJoin';
-
 export default {
-  components: {
-    TeamList,
-    TeamCreate,
-    TeamJoin
-  },
   name: 'teams',
   data(){
       return{

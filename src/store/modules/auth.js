@@ -1,6 +1,7 @@
 /* eslint-disable promise/param-names */
 import { AUTH_REQUEST, AUTH_ERROR, AUTH_SUCCESS, AUTH_LOGOUT } from '../actions/auth'
 import { USER_REQUEST } from '../actions/user'
+import { TEAM_CLEAR } from '../actions/team'
 import apiCall from '@/utils/api'
 
 const state = { token: localStorage.getItem('user-token') || '', status: '', hasLoadedOnce: false }
@@ -21,11 +22,12 @@ const actions = {
       } catch (error) {
         commit(AUTH_ERROR, error)
         localStorage.removeItem('user-token')
-        throw Error(error);
+        throw Error(error.message);
       }
   },
   [AUTH_LOGOUT]: ({commit}) => {
       commit(AUTH_LOGOUT)
+      commit(TEAM_CLEAR)
       localStorage.removeItem('user-token')
   }
 }
