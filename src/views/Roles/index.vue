@@ -1,8 +1,10 @@
 <template>
   <div class="container">
-    <h1>My Teams</h1>
+    <!-- <h1>Team Roles</h1> -->
+    <h1>{{$route.params.team.name}} roles</h1>
+    <pre>{{$route.params.team}}</pre>
     <team-create-join></team-create-join>
-    <team-list class="my-3"></team-list>
+    <!-- <team-list class="my-3"></team-list> -->
   </div>
 </template>
 
@@ -13,10 +15,10 @@ import TeamCreateJoin from '../../components/Team/TeamCreateJoin';
 
 export default {
   components: {
-    TeamList,
+    // TeamList,
     TeamCreateJoin
   },
-  name: 'teams',
+  name: 'roles',
   data(){
       return{
           teams: []
