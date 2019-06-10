@@ -1,8 +1,16 @@
 <template>
   <div>
-    <ul class="list-group">
+    <ul v-if="getTeams.length > 0" class="list-group">
       <li class="list-group-item" v-for="team in getTeams" :key="team.id">{{ team.name }}</li>
     </ul>
+    <template v-else="">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">You haven't any team</h5>
+          <p>You can create or join an existing team</p>
+        </div>
+      </div>
+    </template>
   </div>
 </template>
 

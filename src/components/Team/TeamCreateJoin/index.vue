@@ -2,7 +2,7 @@
   <div class="container card text-center">
     <div class="card-body">
         <h5 class="card-title">Team Name</h5>
-        <input class="form-control" required type="text" v-model="name" placeholder="the team name">
+        <input class="form-control" required type="text" v-model="name" placeholder="Enter the name of the team to search or create">
         <button class="btn btn-primary m-2" @click="join">Join</button>
         <button class="btn btn-primary m-2" @click="create">Create</button>
     </div>
