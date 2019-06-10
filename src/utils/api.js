@@ -1,18 +1,33 @@
-const mocks = {
-    'auth': { 'POST': { token: 'This-is-a-mocked-token' } },
-    'user/me': { 'GET': { name: 'doggo', title: 'sir' } }
-  }
+// import { ok } from "assert";
+
+// const mocks = {
+//     'auth': { 'POST': { token: 'This-is-a-mocked-token' } },
+//     'user/me': { 'GET': { name: 'doggo', title: 'sir' } }
+//   }
   
-  const apiCall = ({url, method, ...args}) => new Promise((resolve, reject) => {
-    setTimeout(() => {
-      try {
-        resolve(mocks[url][method || 'GET'])
-        console.log(`Mocked '${url}' - ${method || 'GET'}`)
-        console.log('response: ', mocks[url][method || 'GET'])
-      } catch (err) {
-        reject(new Error(err))
-      }
-    }, 1000)
-  })
+// const apiCall = () => new Promise((resolve, reject) => {
+  const apiCall = async ( {url, method, ...args} ) => {
+    const baseUrl = 'http://localhost:8000/api/'
+    const settings = {
+      method,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('user-token')
+      },
+      body: JSON.stringify(args.data)
+    }
+    try {
+      const response = await fetch(baseUrl + url, settings)
+      const json = await response.json()
+      if (response.status !== 200) throw Error(json.error);
+      return json;
+    } catch (error) {
+      throw Error(error);
+    }
+
+
+      
+  }
   
   export default apiCall

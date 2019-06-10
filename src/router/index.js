@@ -38,9 +38,21 @@ export default new Router({
       beforeEnter: ifAuthenticated,
     },
     {
+      path: '/team',
+      name: 'team',
+      component: () => import('../views/Teams'),
+      beforeEnter: ifAuthenticated
+    },
+    {
       path: '/login',
       name: 'login',
       component: () => import('../views/Login'),
+      beforeEnter: ifNotAuthenticated,
+    },
+    {
+      path: '/signin',
+      name: 'signIn',
+      component: () => import('../views/SignIn'),
       beforeEnter: ifNotAuthenticated,
     },
     {

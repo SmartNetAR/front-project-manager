@@ -7,21 +7,19 @@ const state = { status: '', profile: {} }
 
 const getters = {
   getProfile: state => state.profile,
-  isProfileLoaded: state => !!state.profile.name,
+  isProfileLoaded: state => !!state.profile.email,
 }
 
 const actions = {
-  [USER_REQUEST]: ({commit, dispatch}) => {
+  [USER_REQUEST]: async ({commit, dispatch}) => {
     commit(USER_REQUEST)
-    apiCall({url: 'user/me'})
-      .then(resp => {
-        commit(USER_SUCCESS, resp)
-      })
-      .catch(resp => {
-        commit(USER_ERROR)
-        // if resp is unauthorized, logout, to
-        dispatch(AUTH_LOGOUT)
-      })
+    try {
+      const response = await apiCall({url: 'profile'})
+      commit(USER_SUCCESS, response.user)
+    } catch (error) {
+      commit(USER_ERROR)
+      dispatch(AUTH_LOGOUT)   
+    }
   },
 }
 
