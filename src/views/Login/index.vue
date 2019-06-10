@@ -1,25 +1,18 @@
 <template>
-  <div>
-    <form class="login" @submit.prevent="login">
-      <h1>Sign in</h1>
-      <label>User email</label>
-      <input required v-model="email" type="text" placeholder="Snoopy"/>
-      <label>Password</label>
-      <input required v-model="password" type="password" placeholder="Password"/>
-      <hr/>
-      <button type="submit">Login</button>
+  <div class="container">
+    <form class="form" @submit.prevent="login">
+      <h1>Login</h1>
+      <div class="form-group">
+        <label>User email</label>
+        <input class="form-control" required v-model="email" type="text" placeholder="yourvalid@email.com"/>
+        <label>Password</label>
+        <input class="form-control" required v-model="password" type="password" placeholder="Password"/>        
+      </div>
+      <button class="btn btn-primary" type="submit">Login</button>
+      Are you new to Project Manager <router-link :to="{ name: 'signIn'}">Create Account</router-link>
     </form>
   </div>
 </template>
-
-<style>
-  .login {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    padding: 10px;
-  }
-</style>
 
 <script>
   import { mapActions } from 'vuex'

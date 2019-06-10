@@ -1,7 +1,7 @@
 <template>
   <div>
-    <ul>
-      <li v-for="team in getTeams" :key="team.id">{{ team.name }}</li>
+    <ul class="list-group">
+      <li class="list-group-item" v-for="team in getTeams" :key="team.id">{{ team.name }}</li>
     </ul>
   </div>
 </template>

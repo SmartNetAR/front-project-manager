@@ -1,16 +1,10 @@
 <template>
-  <div class="home">
+  <div class="container">
     <img alt="Vue logo" src="../../assets/logo.png">
     <ul class="list-group">
-      <li>
-        <router-link :to="{ name: 'team'}" class="list-group-item list-group-item-action">My Teams</router-link>
-      </li>
-      <li>
-        <router-link :to="{ name: 'team'}" class="list-group-item list-group-item-action">My Projects</router-link>
-      </li>
-      <li>
-        <router-link :to="{ name: 'team'}" class="list-group-item list-group-item-action">My Roles</router-link>
-      </li>
+      <router-link class="list-group-item list-group-item-action" :to="{ name: 'team'}">My Teams</router-link>
+      <router-link class="list-group-item list-group-item-action" :to="{ name: 'team'}">My Projects</router-link>
+      <router-link class="list-group-item list-group-item-action" :to="{ name: 'team'}">My Roles</router-link>
     </ul>
 
     <!-- :to="{ name: 'account' }" exact class="nav-link" -->

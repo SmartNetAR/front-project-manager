@@ -21,10 +21,11 @@ const actions = {
   [TEAM_CREATE]: async ( {dispatch}, name ) => {
     try {
       const response = await apiCall({url: 'team', method: 'POST', data: {'name': name}})
-      console.log( response )
+      // console.log( response )
       dispatch(TEAM_REQUEST)
+      return response
     } catch (error) {
-      console.log( error )
+      throw Error(error.message) ;
     }
   },
   [TEAM_SEARCH]: async ( {commit}, name ) => {
@@ -32,8 +33,9 @@ const actions = {
       const response = await apiCall({url: 'team/' + name , method: 'GET'})
       // console.log( response )
       commit(TEAM_SUCCESS, response.teams)
+      return response
     } catch (error) {
-      console.error( error )
+      throw Error(error.message);
     }
   },
   [TEAM_JOIN]: async ( {dispatch, state}, payload ) => {
@@ -45,10 +47,11 @@ const actions = {
         dispatch(TEAM_REQUEST)
         return response
       }else {
-        console.error( 'no existe el team')
+        throw Error( {Error: {'message': ['no existe el team'] } })
       }
     } catch (error) {
-      console.error( error )
+      dispatch(TEAM_REQUEST)
+      throw Error(error.message);
     }
   }
 }

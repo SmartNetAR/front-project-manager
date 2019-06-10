@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Project Manajer</a>
+      <router-link :to="{ name: 'home'}" exact class="navbar-brand">Project Manajer</router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -16,7 +16,7 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+          <li class="nav-item">
             <router-link :to="{ name: 'home'}" exact class="nav-link">
               Home
               <span class="sr-only">(current)</span>
@@ -31,6 +31,12 @@
           <li v-if="isAuthenticated" class="nav-item" @click="logout">
             <router-link :to="{ name: 'home' }" exact class="nav-link">
               Logout
+              <span class="sr-only">(current)</span>
+            </router-link>
+          </li>
+          <li v-if="!isAuthenticated && !authLoading" class="nav-item">
+            <router-link :to="{ name: 'signIn'}" exact class="nav-link">
+              Sign In
               <span class="sr-only">(current)</span>
             </router-link>
           </li>

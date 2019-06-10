@@ -50,6 +50,12 @@ export default new Router({
       beforeEnter: ifNotAuthenticated,
     },
     {
+      path: '/signin',
+      name: 'signIn',
+      component: () => import('../views/SignIn'),
+      beforeEnter: ifNotAuthenticated,
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting
