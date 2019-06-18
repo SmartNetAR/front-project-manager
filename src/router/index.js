@@ -50,6 +50,12 @@ export default new Router({
       beforeEnter: ifAuthenticated
     },
     {
+      path: '/user',
+      name: 'user',
+      component: () => import('../views/Users'),
+      beforeEnter: ifAuthenticated
+    },
+    {
       path: '/login',
       name: 'login',
       component: () => import('../views/Login'),

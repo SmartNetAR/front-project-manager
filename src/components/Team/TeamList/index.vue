@@ -18,7 +18,7 @@
               <router-link class="badge badge-success" :to="{ name: 'role', params: { team: team } }" >
                 Roles
               </router-link>
-              <router-link class="badge badge-secondary" :to="{ name: 'role', params: { team: team } }" >
+              <router-link class="badge badge-secondary" :to="{ name: 'user', params: { team: team } }" >
                 Users
               </router-link>
               <router-link class="badge badge-info" :to="{ name: 'role', params: { team: team } }" >

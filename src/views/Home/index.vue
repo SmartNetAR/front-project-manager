@@ -4,7 +4,7 @@
     <ul class="list-group">
       <router-link class="list-group-item list-group-item-action" :to="{ name: 'team'}">My Teams</router-link>
       <router-link class="list-group-item list-group-item-action" :to="{ name: 'team'}">My Projects</router-link>
-      <router-link class="list-group-item list-group-item-action" :to="{ name: 'team'}">My Roles</router-link>
+      <router-link class="list-group-item list-group-item-action" :to="{ name: 'role'}">My Roles</router-link>
     </ul>
 
     <!-- :to="{ name: 'account' }" exact class="nav-link" -->
