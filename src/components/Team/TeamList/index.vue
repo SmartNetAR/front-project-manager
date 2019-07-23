@@ -1,7 +1,7 @@
 <template>
   <div>
-    <ul v-if="getTeams.length > 0" class="list-group">
-      <li class="list-group-item d-flex justify-content-between align-items-center" v-for="team in getTeams" :key="team.id">
+    <ul v-if="teams.length > 0" class="list-group">
+      <li class="list-group-item d-flex justify-content-between align-items-center" v-for="team in teams" :key="team.id">
         {{ team.name }}
         <template v-if="team.pivot.team_role_id === 1">
           <!-- <span class="badge badge-primary badge-pill"> -->
@@ -44,26 +44,27 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+// import { mapActions } from 'vuex';
 export default {
-  name: 'teams',
+  name: 'TeamList',
+  props: ['teams'],
   data(){
       return{
-          teams: []
+          // teams: []
       }
   },
   methods: {
-    ...mapActions(['TEAM_REQUEST'])
+    // ...mapActions(['TEAM_REQUEST'])
   },
   computed: {
-    getTeams: {
-      get () {
-        return this.$store.getters.getTeams
-      }
-    }
+    // getTeams: {
+    //   get () {
+    //     return this.$store.getters.getTeams
+    //   }
+    // }
   },
   created() {
-    this.TEAM_REQUEST()
+    // this.TEAM_REQUEST()
   }
 }
 </script>

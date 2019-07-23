@@ -1,21 +1,19 @@
 <template>
   <div class="container">
-    <h1>{{$route.params.team.name}} users</h1>
-    <button v-if="$route.params.team.pivot.team_role_id===1" class="btn btn-primary">mgr</button>
-    <ul v-if="users" class="list-group">
-      <li v-for="user in users" :key="user.id" class="list-group-item d-flex justify-content-between align-items-center">
-        {{user.nick}}
-      </li>
-    </ul>
+    <h1>{{$route.params.team.name}}</h1>
+    <h2>users:</h2>
+    <!-- <button v-if="$route.params.team.pivot.team_role_id===1" class="btn btn-primary">mgr</button> -->
+    <user-list :users="users"></user-list>
   </div>
 </template>
 
 <script>
+import UserList from '../../components/User/UserList'
 import { mapActions } from 'vuex';
 
 export default {
   components: {
-    // UserList
+    UserList
   },
   name: 'users',
   data(){

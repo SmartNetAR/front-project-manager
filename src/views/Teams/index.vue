@@ -2,7 +2,7 @@
   <div class="container">
     <h1>My Teams</h1>
     <team-create-join></team-create-join>
-    <team-list class="my-3"></team-list>
+    <team-list :teams="getTeams" class="my-3"></team-list>
   </div>
 </template>
 
